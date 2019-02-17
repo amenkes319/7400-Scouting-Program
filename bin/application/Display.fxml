@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1600.0" style="-fx-background-color: #87ceeb;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TableView fx:id="tableView" focusTraversable="false" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn fx:id="teamNumberColumn" editable="false" prefWidth="103.0" text="Team Number" />
+            <TableColumn fx:id="matchNumberColumn" editable="false" prefWidth="97.0" text="Match Number" />
+          <TableColumn fx:id="cargoInCargoshipColumn" editable="false" prefWidth="123.0" text="Cargo in Cargoship" />
+          <TableColumn fx:id="cargoInRocketColumn" editable="false" minWidth="0.0" prefWidth="105.0" text="Cargo in Rocket" />
+            <TableColumn fx:id="hatchInCargoshipColumn" editable="false" minWidth="0.0" prefWidth="124.0" text="Hatch in Cargoship" />
+            <TableColumn fx:id="hatchInRocketColumn" editable="false" minWidth="0.0" prefWidth="104.0" text="Hatch in Rocket" />
+            <TableColumn fx:id="penaltiesColumn" editable="false" prefWidth="63.0" text="Penalties" />
+            <TableColumn fx:id="piecesDroppedColumn" editable="false" prefWidth="103.0" text="Pieces Dropped" />
+            <TableColumn fx:id="bHABColumn" editable="false" prefWidth="64.0" text="HAB Line" />
+            <TableColumn fx:id="bLevelThreeColumn" editable="false" prefWidth="92.0" text="Rocket Level 3" />
+            <TableColumn fx:id="startHABLevelColumn" editable="false" prefWidth="87.0" text="Starting Level" />
+            <TableColumn fx:id="endHABLevelColumn" editable="false" prefWidth="98.0" text="Ending Level" />
+            <TableColumn fx:id="defenseColumn" editable="false" prefWidth="84.0" text="Defense" />
+            <TableColumn fx:id="commentsColumn" editable="false" prefWidth="352.0" sortable="false" text="Comments" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnBack" mnemonicParsing="false" text="Back" />
+            <Pane prefHeight="40.0" prefWidth="10.0" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" text="Delete Team" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>
