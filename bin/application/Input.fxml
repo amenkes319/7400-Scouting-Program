@@ -6,210 +6,195 @@
 <?import javafx.scene.layout.*?>
 
 
-<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" style="-fx-background-color: #87ceeb;">
-         <center>
-            <HBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" style="-fx-background-color: #37ceeb;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <HBox>
+         <children>
+            <VBox alignment="CENTER_RIGHT" prefHeight="500.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="500.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
+                        <Button fx:id="btnCargoCargoshipAdd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefHeight="100.0" prefWidth="150.0">
                            <children>
-                              <Button fx:id="btnCargoCargoshipAdd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefHeight="100.0" prefWidth="150.0">
-                                 <children>
-                                    <Label layoutX="19.0" layoutY="22.0" text="Cargo into Cargoship" />
-                                 </children>
-                              </Pane>
-                              <Button fx:id="btnCargoCargoshipSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefWidth="20.0" />
-                              <Label fx:id="lblCargoCargoshipCounter" text="0" />
+                              <Label layoutX="19.0" layoutY="22.0" text="Cargo into Cargoship" />
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
-                           <children>
-                              <Button fx:id="btnCargoRocketAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefHeight="100.0" prefWidth="150.0">
-                                 <children>
-                                    <Label layoutX="16.0" layoutY="27.0" text="Cargo into Rocketship" />
-                                 </children>
-                              </Pane>
-                              <Button fx:id="btnCargoRocketSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefWidth="20.0" />
-                              <Label fx:id="lblCargoRocketCounter" text="0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
-                           <children>
-                              <Button fx:id="btnHatchCargoshipAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefHeight="100.0" prefWidth="150.0">
-                                 <children>
-                                    <Label layoutX="19.0" layoutY="27.0" text="Hatch into Cargoship" />
-                                 </children>
-                              </Pane>
-                              <Button fx:id="btnHatchCargoshipSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefWidth="20.0" />
-                              <Label fx:id="lblHatchCargoshipCounter" text="0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
-                           <children>
-                              <Button fx:id="btnHatchRocketAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefHeight="100.0" prefWidth="150.0">
-                                 <children>
-                                    <Label layoutX="17.0" layoutY="27.0" text="Hatch into Rocketship" />
-                                 </children>
-                              </Pane>
-                              <Button fx:id="btnHatchRocketSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefWidth="20.0" />
-                              <Label fx:id="lblHatchRocketCounter" text="0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
-                           <children>
-                              <Button fx:id="btnPenaltyAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefHeight="100.0" prefWidth="150.0">
-                                 <children>
-                                    <Label layoutX="51.0" layoutY="21.0" text="Penalties" />
-                                 </children>
-                              </Pane>
-                              <Button fx:id="btnPenaltySubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefWidth="20.0" />
-                              <Label fx:id="lblPenaltyCounter" text="0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
-                           <children>
-                              <Button fx:id="btnPiecesDroppedAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefHeight="100.0" prefWidth="150.0">
-                                 <children>
-                                    <Label layoutX="17.0" layoutY="27.0" text="Game Pieces Dropped" />
-                                 </children>
-                              </Pane>
-                              <Button fx:id="btnPiecesDroppedSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Pane prefWidth="20.0" />
-                              <Label fx:id="lblPiecesDropped" text="0" />
-                           </children>
-                        </HBox>
+                        </Pane>
+                        <Button fx:id="btnCargoCargoshipSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefWidth="20.0" />
+                        <Label fx:id="lblCargoCargoshipCounter" text="0" />
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="600.0">
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                        <Button fx:id="btnCargoRocketAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefHeight="100.0" prefWidth="150.0">
                            <children>
-                              <CheckBox fx:id="chkBoxHAB" mnemonicParsing="false" text="Did the robot cross the HAB line?" />
+                              <Label layoutX="16.0" layoutY="27.0" text="Cargo into Rocketship" />
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
-                           <children>
-                              <CheckBox fx:id="chkBoxLevelThree" mnemonicParsing="false" text="Did the robot deposit into rocketship level 3?" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-                           <children>
-                              <Label text="Starting HAB Level" />
-                              <Pane prefHeight="60.0" prefWidth="10.0" />
-                              <Slider fx:id="startLevelSlider" blockIncrement="1.0" majorTickUnit="1.0" max="2.0" min="1.0" minorTickCount="0" prefHeight="14.0" prefWidth="50.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-                           <children>
-                              <Label text="Ending HAB Level" />
-                              <Pane prefHeight="60.0" prefWidth="10.0" />
-                              <Slider fx:id="endLevelSlider" blockIncrement="3.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" prefHeight="14.0" prefWidth="100.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-                           <children>
-                              <Label text="Defense Rating" />
-                              <Pane prefHeight="60.0" prefWidth="10.0" />
-                              <Slider fx:id="defenseSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                           </children>
-                        </HBox>
-                        <TextArea fx:id="txtAreaComments" maxWidth="250.0" prefHeight="50.0" prefWidth="250.0" promptText="Comments" />
+                        </Pane>
+                        <Button fx:id="btnCargoRocketSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefWidth="20.0" />
+                        <Label fx:id="lblCargoRocketCounter" text="0" />
                      </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </center>
-         <top>
-            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="lblName" text="Name" />
-                  <Pane prefHeight="17.0" prefWidth="50.0" />
-                  <Label fx:id="lblTeamNumber" text="Team Number" />
-                  <Pane prefHeight="17.0" prefWidth="50.0" />
-                  <Label fx:id="lblMatchNumber" text="Match Number" />
-               </children>
-            </HBox>
-         </top>
-         <bottom>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="btnSave" mnemonicParsing="false" text="Save" />
-                  <Pane prefHeight="40.0" prefWidth="40.0" />
-                  <Button fx:id="btnBack" mnemonicParsing="false" text="Back" />
-               </children>
-            </HBox>
-         </bottom>
-      </BorderPane>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" visible="false">
-         <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label text="Label" />
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
+                     <children>
+                        <Button fx:id="btnHatchCargoshipAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefHeight="100.0" prefWidth="150.0">
+                           <children>
+                              <Label layoutX="19.0" layoutY="27.0" text="Hatch into Cargoship" />
+                           </children>
+                        </Pane>
+                        <Button fx:id="btnHatchCargoshipSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefWidth="20.0" />
+                        <Label fx:id="lblHatchCargoshipCounter" text="0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
+                     <children>
+                        <Button fx:id="btnHatchRocketAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefHeight="100.0" prefWidth="150.0">
+                           <children>
+                              <Label layoutX="17.0" layoutY="27.0" text="Hatch into Rocketship" />
+                           </children>
+                        </Pane>
+                        <Button fx:id="btnHatchRocketSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefWidth="20.0" />
+                        <Label fx:id="lblHatchRocketCounter" text="0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
+                     <children>
+                        <Button fx:id="btnPenaltyAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefHeight="100.0" prefWidth="150.0">
+                           <children>
+                              <Label layoutX="51.0" layoutY="21.0" text="Penalties" />
+                           </children>
+                        </Pane>
+                        <Button fx:id="btnPenaltySubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefWidth="20.0" />
+                        <Label fx:id="lblPenaltyCounter" text="0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
+                     <children>
+                        <Button fx:id="btnPiecesDroppedAdd" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #66ff66; -fx-border-color: black;" text="+">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefHeight="100.0" prefWidth="150.0">
+                           <children>
+                              <Label layoutX="17.0" layoutY="27.0" text="Game Pieces Dropped" />
+                           </children>
+                        </Pane>
+                        <Button fx:id="btnPiecesDroppedSubtract" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #ff6666; -fx-border-color: black;" text="-">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Pane prefWidth="20.0" />
+                        <Label fx:id="lblPiecesDropped" text="0" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
-         </center>
-      </BorderPane>
-   </children>
-</StackPane>
+            <VBox alignment="CENTER_LEFT" prefHeight="500.0" prefWidth="600.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <CheckBox fx:id="chkBoxHAB" mnemonicParsing="false" text="Did the robot cross the HAB line?" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
+                     <children>
+                        <CheckBox fx:id="chkBoxLevelThree" mnemonicParsing="false" text="Did the robot deposit into rocketship level 3?" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <Label text="Starting HAB Level" />
+                        <Pane prefHeight="60.0" prefWidth="10.0" />
+                        <Slider fx:id="startLevelSlider" blockIncrement="1.0" majorTickUnit="1.0" max="2.0" min="1.0" minorTickCount="0" prefHeight="14.0" prefWidth="50.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <Label text="Ending HAB Level" />
+                        <Pane prefHeight="60.0" prefWidth="10.0" />
+                        <Slider fx:id="endLevelSlider" blockIncrement="3.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" prefHeight="14.0" prefWidth="100.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <Label text="Defense Rating" />
+                        <Pane prefHeight="60.0" prefWidth="10.0" />
+                        <Slider fx:id="defenseSlider" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="txtAreaComments" maxWidth="250.0" prefHeight="50.0" prefWidth="250.0" promptText="Comments" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+   <top>
+      <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblTeamNumber" text="Team Number" />
+            <Pane prefHeight="17.0" prefWidth="50.0" />
+            <Label fx:id="lblMatchNumber" text="Match Number" />
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnSave" mnemonicParsing="false" text="Save" />
+            <Pane prefHeight="40.0" prefWidth="40.0" />
+            <Button fx:id="btnBack" mnemonicParsing="false" text="Back" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

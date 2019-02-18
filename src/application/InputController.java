@@ -22,15 +22,13 @@ public class InputController
 
 	Stage stgInput;
 
-	String name;
 	int    teamNumber, matchNumber;
 	int    cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped;
 
 	boolean b_levelThree, b_HAB;
 
-	public InputController(String n, int t, int m)
+	public InputController(int t, int m)
 	{
-		name = n;
 		teamNumber = t;
 		matchNumber = m;
 
@@ -40,11 +38,9 @@ public class InputController
 		hatchInRocket = 0;
 		penalties = 0;
 
-		b_levelThree = false;
-		b_HAB = false;
-
 		stgInput = new Stage();
 		//stgInput.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
+
 		try
 		{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Input.fxml"));
@@ -190,8 +186,7 @@ public class InputController
 
 	public void saveFile()
 	{
-		b_levelThree = chkBoxLevelThree.isSelected();
-		b_HAB = chkBoxHAB.isSelected();
+		String comments = txtAreaComments.getText().isEmpty() ? "No comments" : txtAreaComments.getText().replaceAll(",", "-");
 
 		try
 		{
@@ -199,7 +194,7 @@ public class InputController
 			fw.write(String.valueOf(teamNumber) + "," + String.valueOf(matchNumber) + "," + String.valueOf(cargoInCargoship) + "," + String.valueOf(cargoInRocket) +
 					 "," + String.valueOf(hatchInCargoship) + "," + String.valueOf(hatchInRocket) + "," + String.valueOf(penalties) + "," + String.valueOf(piecesDropped) +
 					 "," + String.valueOf((int) startLevelSlider.getValue()) + "," + String.valueOf((int) endLevelSlider.getValue()) + "," + String.valueOf(defenseSlider.getValue()) +
-					 "," + String.valueOf(b_HAB) + "," + String.valueOf(b_levelThree) + "," + String.valueOf(txtAreaComments.getText().replaceAll(",", "-")) + "\n");
+					 "," + chkBoxHAB.isSelected() + "," + chkBoxLevelThree.isSelected() + "," + comments + "\n");
 
 			fw.close();
 		}
@@ -215,7 +210,6 @@ public class InputController
 
 	public void setInputLabels()
 	{
-		lblName.setText(name);
 		lblTeamNumber.setText(String.valueOf(teamNumber));
 		lblMatchNumber.setText(String.valueOf(matchNumber));
 	}

@@ -100,11 +100,15 @@ public class DisplayController
 		//ObservableList<RobotData> selectedRow = tableView.getSelectionModel().getSelectedItems();
 
 		String filepath = "src\\application\\data.csv";
-		String removeTeam = "3624";
-		removeTeam(filepath, removeTeam);
+		String selectedTeam = tableView.getSelectionModel().getSelectedItem().getAllData();
+		removeTeam(filepath, selectedTeam);
+
+		DisplayController ctrlDisplay = new DisplayController();
+		ctrlDisplay.showStage();
+		stgDisplay.close();
 	}
 
-	public void removeTeam(String filepath, String removeTerm)
+	private void removeTeam(String filepath, String selectedTeam)
 	{
 		String tempFile = "src\\application\\temp.txt";
 
@@ -112,6 +116,8 @@ public class DisplayController
 		File newFile = new File(tempFile);
 		String teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket,
 			   penalties, piecesDropped, startHABLevel, endHABLevel, defense, bHAB, bLevelThree, comments;
+
+		boolean b_deleted = false;
 
 		try
 		{
@@ -124,7 +130,8 @@ public class DisplayController
 			while(scanner.hasNextLine())
 			{
 				String line = scanner.nextLine();
-
+				System.out.println(line);
+				
 				String[] data = line.split(",");
 
 				teamNumber = data[0];
@@ -142,11 +149,22 @@ public class DisplayController
 				bLevelThree = data[12];
 				comments = data[13];
 
-				if(!teamNumber.equals(removeTerm))
+				if(!line.equals(selectedTeam))// || b_deleted)
 				{
 					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
-							 penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
+					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
+				
+					System.out.println("Lines not equal");
 				}
+				else if(b_deleted)
+				{
+					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
+					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
+
+					System.out.println("Lines are equal");
+				}
+				else
+					b_deleted = true;
 			}
 
 			scanner.close();

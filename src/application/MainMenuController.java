@@ -12,10 +12,8 @@ public class MainMenuController
 {
 	Stage stgMainMenu;
 
-	@FXML
-	TextField txtFldName, txtFldTeamNumber, txtFldMatchNumber;
-	@FXML
-	Button btnEnterData, btnDisplayData;
+	@FXML TextField txtFldTeamNumber, txtFldMatchNumber;
+	@FXML Button btnEnterData, btnDisplayData;
 
 	public MainMenuController()
 	{
@@ -46,7 +44,7 @@ public class MainMenuController
 
 	public void loadInput()
 	{
-		InputController ctrlInput = new InputController(txtFldName.getText(), Integer.valueOf(txtFldTeamNumber.getText()), Integer.valueOf(txtFldMatchNumber.getText()));
+		InputController ctrlInput = new InputController(Integer.valueOf(txtFldTeamNumber.getText()), Integer.valueOf(txtFldMatchNumber.getText()));
 		ctrlInput.showStage();
 		stgMainMenu.close();
 	}

@@ -1,22 +1,24 @@
 package application;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class RobotData
 {
-	private SimpleStringProperty teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped, startHABLevel, endHABLevel, defense, b_HAB, b_levelThree, comments;
+	private SimpleIntegerProperty teamNumber, matchNumber;
+	private SimpleStringProperty cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped, startHABLevel, endHABLevel, defense, b_HAB, b_levelThree, comments;
 
 	public RobotData()
 	{
 	}
-	
+
 	public RobotData(int teamNumber, int matchNumber, int cargoInCargoship, int cargoInRocket,
 			int hatchInCargoship, int hatchInRocket, int penalties,	int piecesDropped,
 			int startHABLevel, int endHABLevel, double defense, boolean b_HAB, boolean b_levelThree,
 			String comments)
 	{
-		this.teamNumber = new SimpleStringProperty(String.valueOf(teamNumber));
-		this.matchNumber = new SimpleStringProperty(String.valueOf(matchNumber));
+		this.teamNumber = new SimpleIntegerProperty(teamNumber);
+		this.matchNumber = new SimpleIntegerProperty(matchNumber);
 		this.cargoInCargoship = new SimpleStringProperty(String.valueOf(cargoInCargoship));
 		this.cargoInRocket = new SimpleStringProperty(String.valueOf(cargoInRocket));
 		this.hatchInCargoship = new SimpleStringProperty(String.valueOf(hatchInCargoship));
@@ -31,22 +33,22 @@ public class RobotData
 		this.comments = new SimpleStringProperty(comments);
 	}
 
-	public String getTeamNumber()
+	public int getTeamNumber()
 	{
 		return teamNumber.get();
 	}
 
-	public void setTeamNumber(SimpleStringProperty teamNumber)
+	public void setTeamNumber(SimpleIntegerProperty teamNumber)
 	{
 		this.teamNumber = teamNumber;
 	}
 
-	public String getMatchNumber()
+	public int getMatchNumber()
 	{
 		return matchNumber.get();
 	}
 
-	public void setMatchNumber(SimpleStringProperty matchNumber)
+	public void setMatchNumber(SimpleIntegerProperty matchNumber)
 	{
 		this.matchNumber = matchNumber;
 	}
@@ -141,22 +143,22 @@ public class RobotData
 		this.defense = defense;
 	}
 
-	public String getB_HAB()
+	public String getHAB()
 	{
 		return b_HAB.get();
 	}
 
-	public void setB_HAB(SimpleStringProperty b_HAB)
+	public void setHAB(SimpleStringProperty b_HAB)
 	{
 		this.b_HAB = b_HAB;
 	}
 
-	public String getB_levelThree()
+	public String getLevelThree()
 	{
 		return b_levelThree.get();
 	}
 
-	public void setB_levelThree(SimpleStringProperty b_levelThree)
+	public void setLevelThree(SimpleStringProperty b_levelThree)
 	{
 		this.b_levelThree = b_levelThree;
 	}
@@ -171,5 +173,9 @@ public class RobotData
 		this.comments = comments;
 	}
 
-
+	public String getAllData()
+	{
+		return getTeamNumber() + "," + getMatchNumber() + "," + getCargoInCargoship() + "," + getCargoInRocket() + "," + getHatchInCargoship() + "," + getHatchInRocket() + "," +
+			   getPenalties() + "," + getPiecesDropped() + "," + getStartHABLevel() + "," + getEndHABLevel() + "," + getDefense() + "," + getHAB() + "," + getLevelThree() + "," + getComments() + ",";
+	}
 }
