@@ -1,19 +1,17 @@
 package application;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage)
 	{
-		//primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
-        MainMenuController ctrlMainMenu = new MainMenuController();
-        ctrlMainMenu.showStage();
+		primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
+        InputController ctrlInput = new InputController();
+        ctrlInput.showStage();
 	}
 
 	public static void main(String[] args)

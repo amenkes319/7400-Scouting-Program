@@ -3,10 +3,7 @@ package application;
 import java.io.*;
 import java.util.Scanner;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 
 public class DisplayController
 {
@@ -33,8 +32,8 @@ public class DisplayController
 	@FXML private TableColumn<RobotData, Integer> startHABLevelColumn;
 	@FXML private TableColumn<RobotData, Integer> endHABLevelColumn;
 	@FXML private TableColumn<RobotData, Double> defenseColumn;
-	@FXML private TableColumn<RobotData, Boolean> bHABColumn;
-	@FXML private TableColumn<RobotData, Boolean> bLevelThreeColumn;
+	@FXML private TableColumn<RobotData, String> bHABColumn;
+	@FXML private TableColumn<RobotData, String> bLevelThreeColumn;
 	@FXML private TableColumn<RobotData, String> commentsColumn;
 
 	Stage stgDisplay;
@@ -43,7 +42,7 @@ public class DisplayController
 	{
 
 		stgDisplay = new Stage();
-		//stgMainMenu.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
+		stgDisplay.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
 
 		try
 		{
@@ -51,7 +50,7 @@ public class DisplayController
 
 			loader.setController(this);
 			stgDisplay.setScene(new Scene(loader.load()));
-			stgDisplay.setTitle("Data Table");
+			stgDisplay.setTitle("7400 Scouting Program");
 		}
 
 		catch(Exception e)
@@ -76,11 +75,13 @@ public class DisplayController
 		startHABLevelColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("startHABLevel"));
 		endHABLevelColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("endHABLevel"));
 		defenseColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Double>("defense"));
-		bHABColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Boolean>("b_HAB"));
-		bLevelThreeColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Boolean>("b_levelThree"));
+		bHABColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("HAB"));
+		bLevelThreeColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("levelThree"));
 		commentsColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("comments"));
 
 		tableView.setItems(getRobotData());
+
+		System.out.println();
 	}
 
 	public void showStage()
@@ -90,22 +91,18 @@ public class DisplayController
 
 	public void loadBack()
 	{
-		MainMenuController ctrlMainMenu = new MainMenuController();
-		ctrlMainMenu.showStage();
+		InputController ctrlInput = new InputController();
+		ctrlInput.showStage();
 		stgDisplay.close();
 	}
 
 	public void loadDelete()
 	{
-		//ObservableList<RobotData> selectedRow = tableView.getSelectionModel().getSelectedItems();
-
 		String filepath = "src\\application\\data.csv";
 		String selectedTeam = tableView.getSelectionModel().getSelectedItem().getAllData();
 		removeTeam(filepath, selectedTeam);
 
-		DisplayController ctrlDisplay = new DisplayController();
-		ctrlDisplay.showStage();
-		stgDisplay.close();
+		tableView.setItems(getRobotData());
 	}
 
 	private void removeTeam(String filepath, String selectedTeam)
@@ -130,8 +127,7 @@ public class DisplayController
 			while(scanner.hasNextLine())
 			{
 				String line = scanner.nextLine();
-				System.out.println(line);
-				
+
 				String[] data = line.split(",");
 
 				teamNumber = data[0];
@@ -145,28 +141,28 @@ public class DisplayController
 				startHABLevel = data[8];
 				endHABLevel = data[9];
 				defense = data[10];
-				bHAB = data[11];
-				bLevelThree = data[12];
+				bHAB = Boolean.valueOf(data[11]) ? "Yes" : "No";
+				bLevelThree = Boolean.valueOf(data[12]) ? "Yes" : "No";
 				comments = data[13];
 
-				if(!line.equals(selectedTeam))// || b_deleted)
+				if(!line.equals(selectedTeam))
 				{
 					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
 					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
-				
-					System.out.println("Lines not equal");
+					System.out.println(line + "   does not equal    " + selectedTeam);
 				}
 				else if(b_deleted)
 				{
 					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
 					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
-
-					System.out.println("Lines are equal");
+					System.out.println(line + "   equals    " + selectedTeam + "   but is already deleted");
 				}
 				else
+				{
 					b_deleted = true;
+					System.out.println(line + "   equals    " + selectedTeam + "   and has not been deleted");
+				}
 			}
-
 			scanner.close();
 			pw.flush();
 			pw.close();

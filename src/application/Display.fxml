@@ -12,8 +12,8 @@
         <columns>
             <TableColumn fx:id="teamNumberColumn" editable="false" prefWidth="103.0" text="Team Number" />
             <TableColumn fx:id="matchNumberColumn" editable="false" prefWidth="97.0" text="Match Number" />
-          <TableColumn fx:id="cargoInCargoshipColumn" editable="false" prefWidth="123.0" text="Cargo in Cargoship" />
-          <TableColumn fx:id="cargoInRocketColumn" editable="false" minWidth="0.0" prefWidth="105.0" text="Cargo in Rocket" />
+            <TableColumn fx:id="cargoInCargoshipColumn" editable="false" prefWidth="123.0" text="Cargo in Cargoship" />
+            <TableColumn fx:id="cargoInRocketColumn" editable="false" minWidth="0.0" prefWidth="105.0" text="Cargo in Rocket" />
             <TableColumn fx:id="hatchInCargoshipColumn" editable="false" minWidth="0.0" prefWidth="124.0" text="Hatch in Cargoship" />
             <TableColumn fx:id="hatchInRocketColumn" editable="false" minWidth="0.0" prefWidth="104.0" text="Hatch in Rocket" />
             <TableColumn fx:id="penaltiesColumn" editable="false" prefWidth="63.0" text="Penalties" />
