@@ -80,8 +80,6 @@ public class DisplayController
 		commentsColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("comments"));
 
 		tableView.setItems(getRobotData());
-
-		System.out.println();
 	}
 
 	public void showStage()
@@ -141,26 +139,23 @@ public class DisplayController
 				startHABLevel = data[8];
 				endHABLevel = data[9];
 				defense = data[10];
-				bHAB = Boolean.valueOf(data[11]) ? "Yes" : "No";
-				bLevelThree = Boolean.valueOf(data[12]) ? "Yes" : "No";
+				bHAB = data[11];
+				bLevelThree = data[12];
 				comments = data[13];
 
 				if(!line.equals(selectedTeam))
 				{
 					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
 					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
-					System.out.println(line + "   does not equal    " + selectedTeam);
 				}
 				else if(b_deleted)
 				{
 					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
 					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
-					System.out.println(line + "   equals    " + selectedTeam + "   but is already deleted");
 				}
 				else
 				{
 					b_deleted = true;
-					System.out.println(line + "   equals    " + selectedTeam + "   and has not been deleted");
 				}
 			}
 			scanner.close();

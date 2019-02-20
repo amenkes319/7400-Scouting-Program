@@ -22,9 +22,7 @@ public class InputController
 
 	Stage stgInput;
 
-	int    teamNumber, matchNumber;
-	int    cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped;
-
+	int teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped;
 	boolean b_levelThree, b_HAB;
 
 	public InputController()
@@ -170,16 +168,19 @@ public class InputController
 	{
 		try
 		{
-			teamNumber = Integer.valueOf(txtFldTeamNumber.getText());
-			matchNumber = Integer.valueOf(txtFldMatchNumber.getText());
+			teamNumber = Integer.valueOf(txtFldTeamNumber.getText().trim());
+			matchNumber = Integer.valueOf(txtFldMatchNumber.getText().trim());
 
+			String bHAB = chkBoxHAB.isSelected() ? "Yes" : "No";
+			String bLevelThree = chkBoxLevelThree.isSelected() ? "Yes" : "No";
 			String comments = txtAreaComments.getText().isEmpty() ? "No comments" : txtAreaComments.getText().replaceAll(",", "-").replaceAll("\n", "--");
+
 			FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true);
 
 			fw.write(String.valueOf(teamNumber) + "," + String.valueOf(matchNumber) + "," + String.valueOf(cargoInCargoship) + "," + String.valueOf(cargoInRocket) +
 					 "," + String.valueOf(hatchInCargoship) + "," + String.valueOf(hatchInRocket) + "," + String.valueOf(penalties) + "," + String.valueOf(piecesDropped) +
 					 "," + String.valueOf((int) startLevelSlider.getValue()) + "," + String.valueOf((int) endLevelSlider.getValue()) + "," + String.valueOf(defenseSlider.getValue()) +
-					 "," + chkBoxHAB.isSelected() + "," + chkBoxLevelThree.isSelected() + "," + comments + "\n");
+					 "," + bHAB + "," + bLevelThree + "," + comments + ",\n");
 
 			fw.close();
 
