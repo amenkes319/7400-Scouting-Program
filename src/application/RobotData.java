@@ -12,7 +12,7 @@ public class RobotData
 
 	public RobotData(int teamNumber, int matchNumber, int cargoInCargoship, int cargoInRocket,
 			int hatchInCargoship, int hatchInRocket, int penalties,	int piecesDropped, int startHABLevel,
-			int endHABLevel, double defense, boolean b_HAB, boolean b_levelThree, String comments)
+			int endHABLevel, double defense, String bHAB, String bLevelThree, String comments)
 	{
 		this.teamNumber = new SimpleIntegerProperty(teamNumber);
 		this.matchNumber = new SimpleIntegerProperty(matchNumber);
@@ -25,8 +25,8 @@ public class RobotData
 		this.startHABLevel = new SimpleIntegerProperty(startHABLevel);
 		this.endHABLevel = new SimpleIntegerProperty(endHABLevel);
 		this.defense = new SimpleDoubleProperty(defense);
-		this.HAB = b_HAB ? new SimpleStringProperty("Yes") : new SimpleStringProperty("No");
-		this.levelThree = b_levelThree ? new SimpleStringProperty("Yes") : new SimpleStringProperty("No");
+		this.HAB = new SimpleStringProperty(bHAB);
+		this.levelThree = new SimpleStringProperty(bLevelThree);
 		this.comments = new SimpleStringProperty(comments);
 	}
 

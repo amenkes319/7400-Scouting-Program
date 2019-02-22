@@ -143,6 +143,9 @@ public class DisplayController
 				bLevelThree = data[12];
 				comments = data[13];
 
+				System.out.println("HAB: " + bHAB);
+				System.out.println("Level Three: " + bLevelThree + "\n");
+
 				if(!line.equals(selectedTeam))
 				{
 					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
@@ -154,9 +157,7 @@ public class DisplayController
 					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
 				}
 				else
-				{
 					b_deleted = true;
-				}
 			}
 			scanner.close();
 			pw.flush();
@@ -185,8 +186,8 @@ public class DisplayController
 		int dataStartHABLevel = 0;
 		int dataEndHABLevel = 0;
 		double dataDefense = 0.0;
-		boolean b_dataHAB = false;
-		boolean b_dataLevelThree = false;
+		String dataHAB = "";
+		String dataLevelThree = "";
 		String dataComments = "";
 
 		ObservableList<RobotData> robotDataList = FXCollections.observableArrayList();
@@ -211,12 +212,12 @@ public class DisplayController
 				dataStartHABLevel = Integer.valueOf(data[8]);
 				dataEndHABLevel = Integer.valueOf(data[9]);
 				dataDefense = Double.valueOf(data[10]);
-				b_dataHAB = Boolean.valueOf(data[11]);
-				b_dataLevelThree = Boolean.valueOf(data[12]);
+				dataHAB = data[11];
+				dataLevelThree = data[12];
 				dataComments = data[13];
 
 				robotDataList.add(new RobotData(dataTeamNumber, dataMatchNumber, dataCargoInCargoship, dataCargoInRocket, dataHatchInCargoship, dataHatchInRocket,
-						dataPenalties, dataPiecesDropped, dataStartHABLevel, dataEndHABLevel, dataDefense, b_dataHAB, b_dataLevelThree, dataComments));
+						dataPenalties, dataPiecesDropped, dataStartHABLevel, dataEndHABLevel, dataDefense, dataHAB, dataLevelThree, dataComments));
 			}
 
 			scanner.close();
