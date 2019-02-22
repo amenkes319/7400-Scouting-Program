@@ -224,6 +224,8 @@ public class InputController
 		hatchInRocket = 0;
 		penalties = 0;
 		piecesDropped = 0;
+		chkBoxHAB.setSelected(false);
+		chkBoxLevelThree.setSelected(false);
 		startLevelSlider.setValue(0);
 		endLevelSlider.setValue(0);
 		defenseSlider.setValue(0);
