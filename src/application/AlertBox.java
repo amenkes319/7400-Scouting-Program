@@ -15,6 +15,16 @@ public class AlertBox
 		alert.showAndWait();
 	}
 
+	public static void displayTeamAndMatchNumberError()
+	{
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("7400 Scouting Program");
+		alert.setHeaderText("ERROR!");
+		alert.setContentText("Please enter a valid team and match number!");
+
+		alert.showAndWait();
+	}
+
 	public static void displayTeamNumberError()
 	{
 		Alert alert = new Alert(AlertType.ERROR);

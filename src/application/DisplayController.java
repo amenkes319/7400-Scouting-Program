@@ -143,9 +143,6 @@ public class DisplayController
 				bLevelThree = data[12];
 				comments = data[13];
 
-				System.out.println("HAB: " + bHAB);
-				System.out.println("Level Three: " + bLevelThree + "\n");
-
 				if(!line.equals(selectedTeam))
 				{
 					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +

@@ -188,25 +188,18 @@ public class InputController
 
 			AlertBox.displaySaveSuccess();
 		}
-		catch(Exception e)
+		catch(NumberFormatException e)
 		{
-			try
-			{
-				Integer.valueOf(txtFldTeamNumber.getText());
-			}
-			catch(NumberFormatException nfe)
-			{
-				AlertBox.displayTeamNumberError();
-			}
-
-			try
-			{
-				Integer.valueOf(txtFldMatchNumber.getText());
-			}
-			catch(NumberFormatException nfe)
-			{
+			if(txtFldTeamNumber.getText().isEmpty() && txtFldMatchNumber.getText().isEmpty())
+				AlertBox.displayTeamAndMatchNumberError();
+			else if(txtFldMatchNumber.getText().isEmpty())
 				AlertBox.displayMatchNumberError();
-			}
+			else if(txtFldTeamNumber.getText().isEmpty())
+				AlertBox.displayTeamNumberError();
+		}
+		catch(IOException e)
+		{
+
 		}
 	}
 
