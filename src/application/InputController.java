@@ -11,14 +11,14 @@ import javafx.stage.Stage;
 
 public class InputController
 {
-	@FXML Button btnCargoCargoshipAdd, btnCargoRocketAdd, btnHatchCargoshipAdd, btnHatchRocketAdd, btnPenaltyAdd, btnPiecesDroppedAdd;
-	@FXML Button btnCargoCargoshipSubtract, btnCargoRocketSubtract, btnHatchCargoshipSubtract, btnHatchRocketSubtract, btnPenaltySubtract, btnPiecesDroppedSubtract;
-	@FXML Button btnSave, btnDisplayAllData;
 	@FXML Label lblCargoCargoshipCounter, lblCargoRocketCounter, lblHatchCargoshipCounter, lblHatchRocketCounter, lblPenaltyCounter, lblPiecesDropped;
 	@FXML CheckBox chkBoxLevelThree, chkBoxHAB;
 	@FXML Slider startLevelSlider, endLevelSlider, defenseSlider;
 	@FXML TextArea txtAreaComments;
 	@FXML TextField txtFldTeamNumber, txtFldMatchNumber;
+	@FXML Button btnCargoCargoshipAdd, btnCargoRocketAdd, btnHatchCargoshipAdd, btnHatchRocketAdd, btnPenaltyAdd, btnPiecesDroppedAdd,
+				 btnCargoCargoshipSubtract, btnCargoRocketSubtract, btnHatchCargoshipSubtract, btnHatchRocketSubtract, btnPenaltySubtract, btnPiecesDroppedSubtract,
+	 			 btnSave, btnDisplayAllData, btnClear;
 
 	Stage stgInput;
 
@@ -157,6 +157,7 @@ public class InputController
 
 		btnSave.setOnAction(e -> saveFile());
 		btnDisplayAllData.setOnAction(e -> loadDisplay());
+		btnClear.setOnAction(e -> reset());
 	}
 
 	public void showStage()
