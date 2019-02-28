@@ -174,7 +174,7 @@ public class InputController
 
 			String bHAB = chkBoxHAB.isSelected() ? "Yes" : "No";
 			String bLevelThree = chkBoxLevelThree.isSelected() ? "Yes" : "No";
-			String comments = txtAreaComments.getText().isEmpty() ? "No comments" : txtAreaComments.getText().replaceAll(",", "-").replaceAll("\n", "--");
+			String comments = txtAreaComments.getText().isEmpty() ? "No comments" : txtAreaComments.getText().replaceAll(",", "-").replaceAll("\n", "  ");
 
 			FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true);
 
