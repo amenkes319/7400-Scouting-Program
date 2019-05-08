@@ -11,40 +11,29 @@ import javafx.stage.Stage;
 
 public class InputController
 {
-	@FXML Label lblCargoCargoshipCounter, lblCargoRocketCounter, lblHatchCargoshipCounter, lblHatchRocketCounter, lblPenaltyCounter, lblPiecesDropped;
-	@FXML CheckBox chkBoxLevelThree, chkBoxHAB;
-	@FXML Slider startLevelSlider, endLevelSlider, defenseSlider;
-	@FXML TextArea txtAreaComments;
-	@FXML TextField txtFldTeamNumber, txtFldMatchNumber;
-	@FXML Button btnCargoCargoshipAdd, btnCargoRocketAdd, btnHatchCargoshipAdd, btnHatchRocketAdd, btnPenaltyAdd, btnPiecesDroppedAdd,
-				 btnCargoCargoshipSubtract, btnCargoRocketSubtract, btnHatchCargoshipSubtract, btnHatchRocketSubtract, btnPenaltySubtract, btnPiecesDroppedSubtract,
-	 			 btnSave, btnDisplayAllData, btnClear;
+	@FXML private Label lblCargoCargoshipCounter, lblCargoRocketCounter, lblHatchCargoshipCounter, lblHatchRocketCounter, lblPenaltyCounter, lblPiecesDropped;
+	@FXML private CheckBox chkBoxLevelThree, chkBoxHAB;
+	@FXML private Slider startLevelSlider, endLevelSlider, defenseSlider;
+	@FXML private TextArea txtAreaComments;
+	@FXML private TextField txtFldTeamNumber, txtFldMatchNumber;
+	@FXML private Button btnCargoCargoshipAdd, btnCargoRocketAdd, btnHatchCargoshipAdd, btnHatchRocketAdd, btnPenaltyAdd, btnPiecesDroppedAdd,
+				 		 btnCargoCargoshipSubtract, btnCargoRocketSubtract, btnHatchCargoshipSubtract, btnHatchRocketSubtract, btnPenaltySubtract, btnPiecesDroppedSubtract,
+				 		 btnSave, btnDisplayAllData, btnClear;
 
 	Stage stgInput;
 
 	int teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped;
 	boolean b_levelThree, b_HAB;
 
-	public InputController()
+	public InputController(Stage stage)
 	{
-		stgInput = new Stage();
-		stgInput.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
-
-		try
-		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Input.fxml"));
-
-			loader.setController(this);
-			stgInput.setScene(new Scene(loader.load()));
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		stgInput.setTitle("7400 Scouting Program");
+		stgInput = stage;
 	}
 
+	/*
+	 * Method called automatically by Application class
+	 * Initializes button actions
+	 */
 	public void initialize()
 	{
 		btnCargoCargoshipAdd.setOnAction(e ->
@@ -160,9 +149,22 @@ public class InputController
 		btnClear.setOnAction(e -> reset());
 	}
 
-	public void showStage()
+	public void show()
 	{
-		stgInput.show();
+		stgInput.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
+
+		try
+		{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Input.fxml"));
+
+			loader.setController(this);
+			stgInput.setScene(new Scene(loader.load()));
+			stgInput.centerOnScreen();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public void saveFile()
@@ -242,9 +244,8 @@ public class InputController
 
 	public void loadDisplay()
 	{
-		DisplayController ctrlDisplay = new DisplayController();
-		ctrlDisplay.showStage();
-		stgInput.close();
+		DisplayController ctrlDisplay = new DisplayController(stgInput);
+		ctrlDisplay.show();
 	}
 
 	public void updateCargoInCargoship()

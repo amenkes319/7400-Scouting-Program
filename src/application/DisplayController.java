@@ -38,27 +38,16 @@ public class DisplayController
 
 	Stage stgDisplay;
 
-	public DisplayController()
+	public DisplayController(Stage stage)
 	{
 
-		stgDisplay = new Stage();
-		stgDisplay.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
-
-		try
-		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Display.fxml"));
-
-			loader.setController(this);
-			stgDisplay.setScene(new Scene(loader.load()));
-			stgDisplay.setTitle("7400 Scouting Program");
-		}
-
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		stgDisplay = stage;
 	}
 
+	/*
+	 * Method called automatically by Application class
+	 * Initializes button actions and cell values
+	 */
 	public void initialize()
 	{
 		btnBack.setOnAction(e -> loadBack());
@@ -82,16 +71,29 @@ public class DisplayController
 		tableView.setItems(getRobotData());
 	}
 
-	public void showStage()
+	public void show()
 	{
-		stgDisplay.show();
+		stgDisplay.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
+
+		try
+		{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Display.fxml"));
+
+			loader.setController(this);
+			stgDisplay.setScene(new Scene(loader.load()));
+			stgDisplay.centerOnScreen();
+		}
+
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public void loadBack()
 	{
-		InputController ctrlInput = new InputController();
-		ctrlInput.showStage();
-		stgDisplay.close();
+		InputController ctrlInput = new InputController(stgDisplay);
+		ctrlInput.show();
 	}
 
 	public void loadDelete()
@@ -109,8 +111,6 @@ public class DisplayController
 
 		File oldFile = new File(filepath);
 		File newFile = new File(tempFile);
-		String teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket,
-			   penalties, piecesDropped, startHABLevel, endHABLevel, defense, bHAB, bLevelThree, comments;
 
 		boolean b_deleted = false;
 
@@ -128,30 +128,11 @@ public class DisplayController
 
 				String[] data = line.split(",");
 
-				teamNumber = data[0];
-				matchNumber = data[1];
-				cargoInCargoship = data[2];
-				cargoInRocket = data[3];
-				hatchInCargoship = data[4];
-				hatchInRocket = data[5];
-				penalties = data[6];
-				piecesDropped = data[7];
-				startHABLevel = data[8];
-				endHABLevel = data[9];
-				defense = data[10];
-				bHAB = data[11];
-				bLevelThree = data[12];
-				comments = data[13];
-
-				if(!line.equals(selectedTeam))
+				if(!line.equals(selectedTeam) || b_deleted)
 				{
-					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
-					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
-				}
-				else if(b_deleted)
-				{
-					pw.println(teamNumber + "," + matchNumber + "," + cargoInCargoship + "," + cargoInRocket + "," + hatchInCargoship + "," + hatchInRocket + "," +
-					penalties + "," + piecesDropped + "," + startHABLevel + "," + endHABLevel + "," + defense + "," + bHAB + "," + bLevelThree + "," + comments + ",");
+					for(String d : data)
+						pw.print(d + ",");
+					pw.println();
 				}
 				else
 					b_deleted = true;
@@ -161,8 +142,8 @@ public class DisplayController
 			pw.close();
 			oldFile.delete();
 
-			File dump = new File(filepath);
-			newFile.renameTo(dump);
+			File temp = new File(filepath);
+			newFile.renameTo(temp);
 		}
 		catch(Exception e)
 		{
@@ -172,20 +153,20 @@ public class DisplayController
 
 	public ObservableList<RobotData> getRobotData()
 	{
-		int dataTeamNumber = 0;
-		int dataMatchNumber = 0;
-		int dataCargoInCargoship = 0;
-		int dataCargoInRocket = 0;
-		int dataHatchInCargoship = 0;
-		int dataHatchInRocket = 0;
-		int dataPenalties = 0;
-		int dataPiecesDropped = 0;
-		int dataStartHABLevel = 0;
-		int dataEndHABLevel = 0;
-		double dataDefense = 0.0;
-		String dataHAB = "";
-		String dataLevelThree = "";
-		String dataComments = "";
+		int data_TeamNumber = 0;
+		int data_MatchNumber = 0;
+		int data_CargoInCargoship = 0;
+		int data_CargoInRocket = 0;
+		int data_HatchInCargoship = 0;
+		int data_HatchInRocket = 0;
+		int data_Penalties = 0;
+		int data_PiecesDropped = 0;
+		int data_StartHABLevel = 0;
+		int data_EndHABLevel = 0;
+		double data_Defense = 0.0;
+		String data_HAB = "";
+		String data_LevelThree = "";
+		String data_Comments = "";
 
 		ObservableList<RobotData> robotDataList = FXCollections.observableArrayList();
 
@@ -198,23 +179,23 @@ public class DisplayController
 				String line = scanner.nextLine();
 				String[] data = line.split(",");
 
-				dataTeamNumber = Integer.valueOf(data[0]);
-				dataMatchNumber = Integer.valueOf(data[1]);
-				dataCargoInCargoship = Integer.valueOf(data[2]);
-				dataCargoInRocket = Integer.valueOf(data[3]);
-				dataHatchInCargoship = Integer.valueOf(data[4]);
-				dataHatchInRocket = Integer.valueOf(data[5]);
-				dataPenalties = Integer.valueOf(data[6]);
-				dataPiecesDropped = Integer.valueOf(data[7]);
-				dataStartHABLevel = Integer.valueOf(data[8]);
-				dataEndHABLevel = Integer.valueOf(data[9]);
-				dataDefense = Double.valueOf(data[10]);
-				dataHAB = data[11];
-				dataLevelThree = data[12];
-				dataComments = data[13];
+				data_TeamNumber = Integer.valueOf(data[0]);
+				data_MatchNumber = Integer.valueOf(data[1]);
+				data_CargoInCargoship = Integer.valueOf(data[2]);
+				data_CargoInRocket = Integer.valueOf(data[3]);
+				data_HatchInCargoship = Integer.valueOf(data[4]);
+				data_HatchInRocket = Integer.valueOf(data[5]);
+				data_Penalties = Integer.valueOf(data[6]);
+				data_PiecesDropped = Integer.valueOf(data[7]);
+				data_StartHABLevel = Integer.valueOf(data[8]);
+				data_EndHABLevel = Integer.valueOf(data[9]);
+				data_Defense = Double.valueOf(data[10]);
+				data_HAB = data[11];
+				data_LevelThree = data[12];
+				data_Comments = data[13];
 
-				robotDataList.add(new RobotData(dataTeamNumber, dataMatchNumber, dataCargoInCargoship, dataCargoInRocket, dataHatchInCargoship, dataHatchInRocket,
-						dataPenalties, dataPiecesDropped, dataStartHABLevel, dataEndHABLevel, dataDefense, dataHAB, dataLevelThree, dataComments));
+				robotDataList.add(new RobotData(data_TeamNumber, data_MatchNumber, data_CargoInCargoship, data_CargoInRocket, data_HatchInCargoship, data_HatchInRocket,
+						data_Penalties, data_PiecesDropped, data_StartHABLevel, data_EndHABLevel, data_Defense, data_HAB, data_LevelThree, data_Comments));
 			}
 
 			scanner.close();

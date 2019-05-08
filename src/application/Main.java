@@ -10,9 +10,11 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage)
 	{
+		primaryStage.show();
+		primaryStage.setTitle("7400 Scouting");
 		primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
-        InputController ctrlInput = new InputController();
-        ctrlInput.showStage();
+        InputController ctrlInput = new InputController(primaryStage);
+        ctrlInput.show();
 	}
 
 	public static void main(String[] args)
