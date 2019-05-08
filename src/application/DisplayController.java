@@ -18,8 +18,8 @@ import javafx.stage.Stage;
 
 public class DisplayController
 {
-	@FXML Button btnBack;
-	@FXML Button btnDelete;
+	@FXML private Button btnBack;
+	@FXML private Button btnDelete;
 	@FXML private TableView<RobotData> tableView;
 	@FXML private TableColumn<RobotData, Integer> teamNumberColumn;
 	@FXML private TableColumn<RobotData, Integer> matchNumberColumn;
@@ -36,11 +36,10 @@ public class DisplayController
 	@FXML private TableColumn<RobotData, String> bLevelThreeColumn;
 	@FXML private TableColumn<RobotData, String> commentsColumn;
 
-	Stage stgDisplay;
+	private Stage stgDisplay;
 
 	public DisplayController(Stage stage)
 	{
-
 		stgDisplay = stage;
 	}
 
@@ -153,20 +152,6 @@ public class DisplayController
 
 	public ObservableList<RobotData> getRobotData()
 	{
-		int data_TeamNumber = 0;
-		int data_MatchNumber = 0;
-		int data_CargoInCargoship = 0;
-		int data_CargoInRocket = 0;
-		int data_HatchInCargoship = 0;
-		int data_HatchInRocket = 0;
-		int data_Penalties = 0;
-		int data_PiecesDropped = 0;
-		int data_StartHABLevel = 0;
-		int data_EndHABLevel = 0;
-		double data_Defense = 0.0;
-		String data_HAB = "";
-		String data_LevelThree = "";
-		String data_Comments = "";
 
 		ObservableList<RobotData> robotDataList = FXCollections.observableArrayList();
 
@@ -179,23 +164,8 @@ public class DisplayController
 				String line = scanner.nextLine();
 				String[] data = line.split(",");
 
-				data_TeamNumber = Integer.valueOf(data[0]);
-				data_MatchNumber = Integer.valueOf(data[1]);
-				data_CargoInCargoship = Integer.valueOf(data[2]);
-				data_CargoInRocket = Integer.valueOf(data[3]);
-				data_HatchInCargoship = Integer.valueOf(data[4]);
-				data_HatchInRocket = Integer.valueOf(data[5]);
-				data_Penalties = Integer.valueOf(data[6]);
-				data_PiecesDropped = Integer.valueOf(data[7]);
-				data_StartHABLevel = Integer.valueOf(data[8]);
-				data_EndHABLevel = Integer.valueOf(data[9]);
-				data_Defense = Double.valueOf(data[10]);
-				data_HAB = data[11];
-				data_LevelThree = data[12];
-				data_Comments = data[13];
-
-				robotDataList.add(new RobotData(data_TeamNumber, data_MatchNumber, data_CargoInCargoship, data_CargoInRocket, data_HatchInCargoship, data_HatchInRocket,
-						data_Penalties, data_PiecesDropped, data_StartHABLevel, data_EndHABLevel, data_Defense, data_HAB, data_LevelThree, data_Comments));
+				robotDataList.add(new RobotData(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2]), Integer.valueOf(data[3]), Integer.valueOf(data[4]), Integer.valueOf(data[5]),
+						Integer.valueOf(data[6]), Integer.valueOf(data[7]), Integer.valueOf(data[8]), Integer.valueOf(data[9]), Double.valueOf(data[10]), data[11], data[12], data[13]));
 			}
 
 			scanner.close();

@@ -20,10 +20,9 @@ public class InputController
 				 		 btnCargoCargoshipSubtract, btnCargoRocketSubtract, btnHatchCargoshipSubtract, btnHatchRocketSubtract, btnPenaltySubtract, btnPiecesDroppedSubtract,
 				 		 btnSave, btnDisplayAllData, btnClear;
 
-	Stage stgInput;
+	private Stage stgInput;
 
-	int teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped;
-	boolean b_levelThree, b_HAB;
+	private int teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped;
 
 	public InputController(Stage stage)
 	{
