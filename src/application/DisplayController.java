@@ -138,9 +138,8 @@ public class DisplayController
 			pw.flush();
 			pw.close();
 			oldFile.delete();
-
-			File temp = new File(filepath);
-			newFile.renameTo(temp);
+			
+			newFile.renameTo(new File(filepath));
 		}
 		catch(Exception e)
 		{
