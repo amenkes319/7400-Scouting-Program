@@ -116,10 +116,7 @@ public class DisplayController
 		try
 		{
 			Scanner scanner = new Scanner(oldFile);
-
-			FileWriter fw = new FileWriter(tempFile, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter pw = new PrintWriter(bw);
+			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(tempFile, true)));
 
 			while(scanner.hasNextLine())
 			{
