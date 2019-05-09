@@ -173,8 +173,8 @@ public class InputController
 			teamNumber = Integer.valueOf(txtFldTeamNumber.getText().trim());
 			matchNumber = Integer.valueOf(txtFldMatchNumber.getText().trim());
 
-			String bHAB = chkBoxHAB.isSelected() ? "Yes" : "No";
-			String bLevelThree = chkBoxLevelThree.isSelected() ? "Yes" : "No";
+			String hab = chkBoxHAB.isSelected() ? "Yes" : "No";
+			String levelThree = chkBoxLevelThree.isSelected() ? "Yes" : "No";
 			String comments = txtAreaComments.getText().isEmpty() ? "No comments" : txtAreaComments.getText().replaceAll(",", "-").replaceAll("\n", "  ");
 
 			FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true);
@@ -182,7 +182,7 @@ public class InputController
 			fw.write(String.valueOf(teamNumber) + "," + String.valueOf(matchNumber) + "," + String.valueOf(cargoInCargoship) + "," + String.valueOf(cargoInRocket) +
 					 "," + String.valueOf(hatchInCargoship) + "," + String.valueOf(hatchInRocket) + "," + String.valueOf(penalties) + "," + String.valueOf(piecesDropped) +
 					 "," + String.valueOf((int) startLevelSlider.getValue()) + "," + String.valueOf((int) endLevelSlider.getValue()) + "," + String.valueOf(defenseSlider.getValue()) +
-					 "," + bHAB + "," + bLevelThree + "," + comments + ",\n");
+					 "," + hab + "," + levelThree + "," + comments + ",\n");
 
 			fw.close();
 
