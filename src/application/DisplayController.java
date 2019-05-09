@@ -123,9 +123,7 @@ public class DisplayController
 
 			while(scanner.hasNextLine())
 			{
-				String line = scanner.nextLine();
-
-				String[] data = line.split(",");
+				String[] data = scanner.nextLine().split(",");
 
 				if(!line.equals(selectedTeam) || b_deleted)
 				{
