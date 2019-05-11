@@ -111,7 +111,7 @@ public class DisplayController
 		File oldFile = new File(filepath);
 		File newFile = new File(tempFile);
 
-		boolean b_deleted = false;
+		boolean bDeleted = false;
 
 		try
 		{
@@ -120,22 +120,26 @@ public class DisplayController
 
 			while(scanner.hasNextLine())
 			{
-				String[] data = scanner.nextLine().split(",");
+				String line = scanner.nextLine();
 
-				if(!line.equals(selectedTeam) || b_deleted)
+				String[] data = line.split(",");
+
+				System.out.println(line);
+
+				if(!line.equals(selectedTeam) || bDeleted)
 				{
 					for(String d : data)
 						pw.print(d + ",");
 					pw.println();
 				}
 				else
-					b_deleted = true;
+					bDeleted = true;
 			}
 			scanner.close();
 			pw.flush();
 			pw.close();
 			oldFile.delete();
-			
+
 			newFile.renameTo(new File(filepath));
 		}
 		catch(Exception e)
@@ -155,8 +159,7 @@ public class DisplayController
 
 			while(scanner.hasNextLine())
 			{
-				String line = scanner.nextLine();
-				String[] data = line.split(",");
+				String[] data = scanner.nextLine().split(",");
 
 				robotDataList.add(new RobotData(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2]), Integer.valueOf(data[3]), Integer.valueOf(data[4]), Integer.valueOf(data[5]),
 						Integer.valueOf(data[6]), Integer.valueOf(data[7]), Integer.valueOf(data[8]), Integer.valueOf(data[9]), Double.valueOf(data[10]), data[11], data[12], data[13]));

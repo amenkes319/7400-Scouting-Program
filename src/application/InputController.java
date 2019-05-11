@@ -18,7 +18,7 @@ public class InputController
 	@FXML private TextField txtFldTeamNumber, txtFldMatchNumber;
 	@FXML private Button btnCargoCargoshipAdd, btnCargoRocketAdd, btnHatchCargoshipAdd, btnHatchRocketAdd, btnPenaltyAdd, btnPiecesDroppedAdd,
 				 		 btnCargoCargoshipSubtract, btnCargoRocketSubtract, btnHatchCargoshipSubtract, btnHatchRocketSubtract, btnPenaltySubtract, btnPiecesDroppedSubtract,
-				 		 btnSave, btnDisplayAllData, btnClear;
+				 		 btnSave, btnDisplayAllData, btnClear, btnRandom;
 
 	private Stage stgInput;
 
@@ -146,6 +146,7 @@ public class InputController
 		btnSave.setOnAction(e -> saveFile());
 		btnDisplayAllData.setOnAction(e -> loadDisplay());
 		btnClear.setOnAction(e -> reset());
+		btnRandom.setOnAction(e -> generateRandomTeam());
 	}
 
 	public void show()
@@ -239,6 +240,29 @@ public class InputController
 		updateHatchInRocket();
 		updatePenalty();
 		updatePiecesDropped();
+	}
+
+	private void generateRandomTeam()
+	{
+		try
+		{
+			FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true);
+
+			fw.write(Math.round((Math.random()*7915 + 1)) + "," + Math.round(Math.random()*115 + 1) + "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*20) +
+					 "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*10) + "," + Math.round(Math.random()*20) +
+					 "," + (Math.round(Math.random()*2 + 1)) + "," + Math.round(Math.random()*3) + "," + (double) Math.round(Math.random()*5 * 2)/2 +
+					 "," + (Math.round(Math.random()) == 1 ? "Yes" : "No") + "," + (Math.round(Math.random()) == 1 ? "Yes" : "No") + "," + "Random Team" + ",\n");
+
+			fw.close();
+
+			reset();
+
+			AlertBox.displaySaveSuccess();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public void loadDisplay()

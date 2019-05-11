@@ -12,6 +12,7 @@ public class Main extends Application
 	{
 		primaryStage.show();
 		primaryStage.setTitle("7400 Scouting");
+		primaryStage.setResizable(false);
 		primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
         InputController ctrlInput = new InputController(primaryStage);
         ctrlInput.show();
