@@ -18,8 +18,7 @@ import javafx.stage.Stage;
 
 public class DisplayController
 {
-	@FXML private Button btnBack;
-	@FXML private Button btnDelete;
+	@FXML private Button btnBack, btnDelete, btnDeleteAll;
 	@FXML private TableView<RobotData> tableView;
 	@FXML private TableColumn<RobotData, Integer> teamNumberColumn;
 	@FXML private TableColumn<RobotData, Integer> matchNumberColumn;
@@ -51,6 +50,7 @@ public class DisplayController
 	{
 		btnBack.setOnAction(e -> loadBack());
 		btnDelete.setOnAction(e -> loadDelete());
+		btnDeleteAll.setOnAction(e -> loadDeleteAll());
 
 		teamNumberColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("teamNumber"));
 		matchNumberColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("matchNumber"));
@@ -100,6 +100,20 @@ public class DisplayController
 		String filepath = "src\\application\\data.csv";
 		String selectedTeam = tableView.getSelectionModel().getSelectedItem().getAllData();
 		removeTeam(filepath, selectedTeam);
+
+		tableView.setItems(getRobotData());
+	}
+
+	public void loadDeleteAll()
+	{
+		String filepath = "src\\application\\data.csv";
+		String tempFile= "src\\application\\temp.csv";
+
+		File oldFile = new File(filepath);
+		File newFile = new File(tempFile);
+
+		oldFile.delete();
+		newFile.renameTo(new File(filepath));
 
 		tableView.setItems(getRobotData());
 	}
@@ -169,7 +183,7 @@ public class DisplayController
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			return FXCollections.observableArrayList();
 		}
 
 		return robotDataList;

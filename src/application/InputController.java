@@ -255,8 +255,6 @@ public class InputController
 
 			fw.close();
 
-			reset();
-
 			AlertBox.displaySaveSuccess();
 		}
 		catch(IOException e)
