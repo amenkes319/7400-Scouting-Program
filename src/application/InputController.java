@@ -1,4 +1,4 @@
-package application;
+package /*src.*/application;
 
 import java.io.*;
 
@@ -9,293 +9,325 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/*
+ * Every FXML file needs a controller class
+ * Controls Input.fxml
+ *
+ * @version 5/10/2019
+ * @author Andrew Menkes
+ */
 public class InputController
 {
-	@FXML private Label lblCargoCargoshipCounter, lblCargoRocketCounter, lblHatchCargoshipCounter, lblHatchRocketCounter, lblPenaltyCounter, lblPiecesDropped;
-	@FXML private CheckBox chkBoxLevelThree, chkBoxHAB;
-	@FXML private Slider startLevelSlider, endLevelSlider, defenseSlider;
-	@FXML private TextArea txtAreaComments;
-	@FXML private TextField txtFldTeamNumber, txtFldMatchNumber;
-	@FXML private Button btnCargoCargoshipAdd, btnCargoRocketAdd, btnHatchCargoshipAdd, btnHatchRocketAdd, btnPenaltyAdd, btnPiecesDroppedAdd,
-				 		 btnCargoCargoshipSubtract, btnCargoRocketSubtract, btnHatchCargoshipSubtract, btnHatchRocketSubtract, btnPenaltySubtract, btnPiecesDroppedSubtract,
-				 		 btnSave, btnDisplayAllData, btnClear, btnRandom;
+    //Label - A string displayed as basic text
+    @FXML private Label lblCargoCargoshipCounter, lblCargoRocketCounter, lblHatchCargoshipCounter, lblHatchRocketCounter, lblPenaltyCounter, lblPiecesDropped;
+    @FXML private CheckBox chkBoxLevelThree, chkBoxHAB; //CheckBox- contains a boolean value whether the box is check or not
+    @FXML private Slider startLevelSlider, endLevelSlider, defenseSlider; //Slider- contains an int or double value
+    @FXML private TextArea txtAreaComments; //TextArea- Allows the user to enter a large String
+    @FXML private TextField txtFldTeamNumber, txtFldMatchNumber; //TextField- Allows the user to tenter a short String
+    @FXML private Button btnCargoCargoshipAdd;
+    @FXML private Button btnCargoRocketAdd;
+    @FXML private Button btnHatchCargoshipAdd;
+    @FXML private Button btnHatchRocketAdd;
+    @FXML private Button btnPenaltyAdd;
+    @FXML private Button btnPiecesDroppedAdd;
+    @FXML private Button btnCargoCargoshipSubtract;
+    @FXML private Button btnCargoRocketSubtract;
+    @FXML private Button btnHatchCargoshipSubtract;
+    @FXML private Button btnHatchRocketSubtract;
+    @FXML private Button btnPenaltySubtract;
+    @FXML private Button btnPiecesDroppedSubtract;
+    @FXML private Button btnSave;
+    @FXML private Button btnDisplayAllData;
+    @FXML private Button btnClear;
+    @FXML private Button btnRandom;
 
-	private Stage stgInput;
+    private Stage stgInput;
 
-	private int teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped;
+    private int teamNumber, matchNumber, cargoInCargoship, cargoInRocket, hatchInCargoship, hatchInRocket, penalties, piecesDropped;
 
-	public InputController(Stage stage)
-	{
-		stgInput = stage;
-	}
+    public InputController(Stage stage)
+    {
+        stgInput = stage;
+    }
 
-	/*
-	 * Method called automatically by Application class
-	 * Initializes button actions
-	 */
-	public void initialize()
-	{
-		btnCargoCargoshipAdd.setOnAction(e ->
-		{
-			if(cargoInCargoship >= 0)
-			{
-				cargoInCargoship++;
-				updateCargoInCargoship();
-			}
-		});
+    /*
+     * Method called automatically by Application class
+     * Initializes button actions
+     */
+    public void initialize()
+    {
 
-		btnCargoCargoshipSubtract.setOnAction(e ->
-		{
-			if(cargoInCargoship > 0)
-			{
-				cargoInCargoship--;
-				updateCargoInCargoship();
-			}
-		});
+        //button.setOnAction sets the action of the specified button when pressed
+        //e -> method() is a lambda function which takes the user action, e, and performs the action on the right side of the arrow operator
+        btnCargoCargoshipAdd.setOnAction(e ->
+        {
+            if(cargoInCargoship >= 0)
+            {
+                cargoInCargoship++;
+                updateCargoInCargoship();
+            }
+        });
 
-		btnCargoRocketAdd.setOnAction(e ->
-		{
-			if(cargoInRocket >= 0)
-			{
-				cargoInRocket++;
-				updateCargoInRocket();
-			}
-		});
+        btnCargoCargoshipSubtract.setOnAction(e ->
+        {
+            if(cargoInCargoship > 0)
+            {
+                cargoInCargoship--;
+                updateCargoInCargoship();
+            }
+        });
 
-		btnCargoRocketSubtract.setOnAction(e ->
-		{
-			if(cargoInRocket > 0)
-			{
-				cargoInRocket--;
-				updateCargoInRocket();
-			}
-		});
+        btnCargoRocketAdd.setOnAction(e ->
+        {
+            if(cargoInRocket >= 0)
+            {
+                cargoInRocket++;
+                updateCargoInRocket();
+            }
+        });
 
-		btnHatchCargoshipAdd.setOnAction(e ->
-		{
-			if(hatchInCargoship >= 0)
-			{
-				hatchInCargoship++;
-				updateHatchInCargoship();
-			}
-		});
+        btnCargoRocketSubtract.setOnAction(e ->
+        {
+            if(cargoInRocket > 0)
+            {
+                cargoInRocket--;
+                updateCargoInRocket();
+            }
+        });
 
-		btnHatchCargoshipSubtract.setOnAction(e ->
-		{
-			if(hatchInCargoship > 0)
-			{
-				hatchInCargoship--;
-				updateHatchInCargoship();
-			}
-		});
+        btnHatchCargoshipAdd.setOnAction(e ->
+        {
+            if(hatchInCargoship >= 0)
+            {
+                hatchInCargoship++;
+                updateHatchInCargoship();
+            }
+        });
 
-		btnHatchRocketAdd.setOnAction(e ->
-		{
-			if(hatchInRocket >= 0)
-			{
-				hatchInRocket++;
-				updateHatchInRocket();
-			}
-		});
+        btnHatchCargoshipSubtract.setOnAction(e ->
+        {
+            if(hatchInCargoship > 0)
+            {
+                hatchInCargoship--;
+                updateHatchInCargoship();
+            }
+        });
 
-		btnHatchRocketSubtract.setOnAction(e ->
-		{
-			if(hatchInRocket > 0)
-			{
-				hatchInRocket--;
-				updateHatchInRocket();
-			}
-		});
+        btnHatchRocketAdd.setOnAction(e ->
+        {
+            if(hatchInRocket >= 0)
+            {
+                hatchInRocket++;
+                updateHatchInRocket();
+            }
+        });
 
-		btnPenaltyAdd.setOnAction(e ->
-		{
-			if(penalties >= 0)
-			{
-				penalties++;
-				updatePenalty();
-			}
-		});
+        btnHatchRocketSubtract.setOnAction(e ->
+        {
+            if(hatchInRocket > 0)
+            {
+                hatchInRocket--;
+                updateHatchInRocket();
+            }
+        });
 
-		btnPenaltySubtract.setOnAction(e ->
-		{
-			if(penalties > 0)
-			{
-				penalties--;
-				updatePenalty();
-			}
-		});
+        btnPenaltyAdd.setOnAction(e ->
+        {
+            if(penalties >= 0)
+            {
+                penalties++;
+                updatePenalty();
+            }
+        });
 
-		btnPiecesDroppedAdd.setOnAction(e ->
-		{
-			if(piecesDropped >= 0)
-			{
-				piecesDropped++;
-				updatePiecesDropped();
-			}
-		});
+        btnPenaltySubtract.setOnAction(e ->
+        {
+            if(penalties > 0)
+            {
+                penalties--;
+                updatePenalty();
+            }
+        });
 
-		btnPiecesDroppedSubtract.setOnAction(e ->
-		{
-			if(piecesDropped > 0)
-			{
-				piecesDropped--;
-				updatePiecesDropped();
-			}
-		});
+        btnPiecesDroppedAdd.setOnAction(e ->
+        {
+            if(piecesDropped >= 0)
+            {
+                piecesDropped++;
+                updatePiecesDropped();
+            }
+        });
 
-		btnSave.setOnAction(e -> saveFile());
-		btnDisplayAllData.setOnAction(e -> loadDisplay());
-		btnClear.setOnAction(e -> reset());
-		btnRandom.setOnAction(e -> generateRandomTeam());
-	}
+        btnPiecesDroppedSubtract.setOnAction(e ->
+        {
+            if(piecesDropped > 0)
+            {
+                piecesDropped--;
+                updatePiecesDropped();
+            }
+        });
 
-	public void show()
-	{
-		stgInput.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
+        btnSave.setOnAction(e -> saveFile());
+        btnDisplayAllData.setOnAction(e -> loadDisplay());
+        btnClear.setOnAction(e -> reset());
+        btnRandom.setOnAction(e -> generateRandomTeam());
+    }
 
-		try
-		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Input.fxml"));
+    public void show()
+    {
+        stgInput.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
 
-			loader.setController(this);
-			stgInput.setScene(new Scene(loader.load()));
-			stgInput.centerOnScreen();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("Input.fxml")); //Loads the FXML file
 
-	public void saveFile()
-	{
-		try
-		{
-			teamNumber = Integer.valueOf(txtFldTeamNumber.getText().trim());
-			matchNumber = Integer.valueOf(txtFldMatchNumber.getText().trim());
+            loader.setController(this); //Sets InputController.java as the Input.FXML controller
 
-			String hab = chkBoxHAB.isSelected() ? "Yes" : "No";
-			String levelThree = chkBoxLevelThree.isSelected() ? "Yes" : "No";
-			String comments = txtAreaComments.getText().isEmpty() ? "No comments" : txtAreaComments.getText().replaceAll(",", "-").replaceAll("\n", "  ");
+            //Scene- the contents set inside of the stage
+            stgInput.setScene(new Scene(loader.load())); //Sets the scene of the stage to the fxml loaded file
+            stgInput.centerOnScreen();
+        }
+        catch(Exception e)
+        {
+            System.out.println("File not found");
+        }
+    }
 
-			FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true);
+    public void saveFile()
+    {
+        try
+        {
+            teamNumber = Integer.valueOf(txtFldTeamNumber.getText().trim()); //get String text of team number text field
+            matchNumber = Integer.valueOf(txtFldMatchNumber.getText().trim()); //get String text of match number text field
 
-			fw.write(String.valueOf(teamNumber) + "," + String.valueOf(matchNumber) + "," + String.valueOf(cargoInCargoship) + "," + String.valueOf(cargoInRocket) +
-					 "," + String.valueOf(hatchInCargoship) + "," + String.valueOf(hatchInRocket) + "," + String.valueOf(penalties) + "," + String.valueOf(piecesDropped) +
-					 "," + String.valueOf((int) startLevelSlider.getValue()) + "," + String.valueOf((int) endLevelSlider.getValue()) + "," + String.valueOf(defenseSlider.getValue()) +
-					 "," + hab + "," + levelThree + "," + comments + ",\n");
+            String hab = chkBoxHAB.isSelected() ? "Yes" : "No";
+            String levelThree = chkBoxLevelThree.isSelected() ? "Yes" : "No";
+            String comments = txtAreaComments.getText().isEmpty() ? "No comments" : txtAreaComments.getText().replaceAll(",", "-").replaceAll("\n", "  ");
 
-			fw.close();
+            FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true); //Write to specified file in first parameter, boolean value whether the writer appends the current file
 
-			reset();
+            fw.write(String.valueOf(teamNumber) + "," + String.valueOf(matchNumber) + "," + String.valueOf(cargoInCargoship) + "," + String.valueOf(cargoInRocket) +
+                     "," + String.valueOf(hatchInCargoship) + "," + String.valueOf(hatchInRocket) + "," + String.valueOf(penalties) + "," + String.valueOf(piecesDropped) +
+                     "," + String.valueOf((int) startLevelSlider.getValue()) + "," + String.valueOf((int) endLevelSlider.getValue()) + "," + String.valueOf(defenseSlider.getValue()) +
+                     "," + hab + "," + levelThree + "," + comments + ",\n"); //Write data to file
 
-			AlertBox.displaySaveSuccess();
-		}
-		catch(NumberFormatException e)
-		{
-			try
-			{
-				Integer.valueOf(txtFldTeamNumber.getText().trim());
-			}
-			catch(NumberFormatException ex)
-			{
-				AlertBox.displayTeamNumberError();
-			}
+            fw.close();
 
-			try
-			{
-				Integer.valueOf(txtFldMatchNumber.getText().trim());
-			}
-			catch(NumberFormatException ex)
-			{
-				AlertBox.displayMatchNumberError();
-			}
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
+            reset();
 
-	private void reset()
-	{
-		txtFldTeamNumber.clear();
-		txtFldMatchNumber.clear();
-		cargoInCargoship = 0;
-		cargoInRocket = 0;
-		hatchInCargoship = 0;
-		hatchInRocket = 0;
-		penalties = 0;
-		piecesDropped = 0;
-		chkBoxHAB.setSelected(false);
-		chkBoxLevelThree.setSelected(false);
-		startLevelSlider.setValue(0);
-		endLevelSlider.setValue(0);
-		defenseSlider.setValue(0);
-		txtAreaComments.clear();
+            AlertBox.displaySaveSuccess();
+        }
+        catch(NumberFormatException e)
+        {
+            try
+            {
+                Integer.valueOf(txtFldTeamNumber.getText().trim());
+            }
+            catch(NumberFormatException ex)
+            {
+                AlertBox.displayTeamNumberError();
+            }
 
-		updateCargoInCargoship();
-		updateCargoInRocket();
-		updateHatchInCargoship();
-		updateHatchInRocket();
-		updatePenalty();
-		updatePiecesDropped();
-	}
+            try
+            {
+                Integer.valueOf(txtFldMatchNumber.getText().trim());
+            }
+            catch(NumberFormatException ex)
+            {
+                AlertBox.displayMatchNumberError();
+            }
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-	private void generateRandomTeam()
-	{
-		try
-		{
-			FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true);
+    /*
+     * Reset all values in input.FXML
+     */
+    private void reset()
+    {
+        txtFldTeamNumber.clear();
+        txtFldMatchNumber.clear();
+        cargoInCargoship = 0;
+        cargoInRocket = 0;
+        hatchInCargoship = 0;
+        hatchInRocket = 0;
+        penalties = 0;
+        piecesDropped = 0;
+        chkBoxHAB.setSelected(false);
+        chkBoxLevelThree.setSelected(false);
+        startLevelSlider.setValue(0);
+        endLevelSlider.setValue(0);
+        defenseSlider.setValue(0);
+        txtAreaComments.clear();
 
-			fw.write(Math.round((Math.random()*7915 + 1)) + "," + Math.round(Math.random()*115 + 1) + "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*20) +
-					 "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*10) + "," + Math.round(Math.random()*20) +
-					 "," + (Math.round(Math.random()*2 + 1)) + "," + Math.round(Math.random()*3) + "," + (double) Math.round(Math.random()*5 * 2)/2 +
-					 "," + (Math.round(Math.random()) == 1 ? "Yes" : "No") + "," + (Math.round(Math.random()) == 1 ? "Yes" : "No") + "," + "Random Team" + ",\n");
+        updateCargoInCargoship();
+        updateCargoInRocket();
+        updateHatchInCargoship();
+        updateHatchInRocket();
+        updatePenalty();
+        updatePiecesDropped();
+    }
 
-			fw.close();
+    /*
+     * Generate and save random team data
+     */
+    private void generateRandomTeam()
+    {
+        try
+        {
+            FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true);
 
-			AlertBox.displaySaveSuccess();
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
+            fw.write(Math.round((Math.random()*7915 + 1)) + "," + Math.round(Math.random()*115 + 1) + "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*20) +
+                     "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*10) + "," + Math.round(Math.random()*20) +
+                     "," + (Math.round(Math.random()*2 + 1)) + "," + Math.round(Math.random()*3) + "," + (double) Math.round(Math.random()*5 * 2)/2 +
+                     "," + (Math.round(Math.random()) == 1 ? "Yes" : "No") + "," + (Math.round(Math.random()) == 1 ? "Yes" : "No") + "," + "Random Team" + ",\n");
 
-	public void loadDisplay()
-	{
-		DisplayController ctrlDisplay = new DisplayController(stgInput);
-		ctrlDisplay.show();
-	}
+            fw.close();
 
-	public void updateCargoInCargoship()
-	{
-		lblCargoCargoshipCounter.setText(String.valueOf(cargoInCargoship));
-	}
+            AlertBox.displaySaveSuccess();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-	public void updateCargoInRocket()
-	{
-		lblCargoRocketCounter.setText(String.valueOf(cargoInRocket));
-	}
+    public void loadDisplay()
+    {
+        DisplayController ctrlDisplay = new DisplayController(stgInput);
+        ctrlDisplay.show();
+    }
 
-	public void updateHatchInCargoship()
-	{
-		lblHatchCargoshipCounter.setText(String.valueOf(hatchInCargoship));
-	}
+    public void updateCargoInCargoship()
+    {
+        lblCargoCargoshipCounter.setText(String.valueOf(cargoInCargoship));
+    }
 
-	public void updateHatchInRocket()
-	{
-		lblHatchRocketCounter.setText(String.valueOf(hatchInRocket));
-	}
+    public void updateCargoInRocket()
+    {
+        lblCargoRocketCounter.setText(String.valueOf(cargoInRocket));
+    }
 
-	public void updatePenalty()
-	{
-		lblPenaltyCounter.setText(String.valueOf(penalties));
-	}
+    public void updateHatchInCargoship()
+    {
+        lblHatchCargoshipCounter.setText(String.valueOf(hatchInCargoship));
+    }
 
-	public void updatePiecesDropped()
-	{
-		lblPiecesDropped.setText(String.valueOf(piecesDropped));
-	}
+    public void updateHatchInRocket()
+    {
+        lblHatchRocketCounter.setText(String.valueOf(hatchInRocket));
+    }
+
+    public void updatePenalty()
+    {
+        lblPenaltyCounter.setText(String.valueOf(penalties));
+    }
+
+    public void updatePiecesDropped()
+    {
+        lblPiecesDropped.setText(String.valueOf(piecesDropped));
+    }
 }
