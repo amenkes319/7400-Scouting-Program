@@ -180,13 +180,14 @@ public class DisplayController
             {
                 String[] data = scanner.nextLine().split(",");
 
-                robotDataList.add(new RobotData(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2]), Integer.valueOf(data[3]), Integer.valueOf(data[4]), Integer.valueOf(data[5]),
-                                                Integer.valueOf(data[6]), Integer.valueOf(data[7]), Integer.valueOf(data[8]), Integer.valueOf(data[9]), Double.valueOf(data[10]), data[11], data[12], data[13]));
+                robotDataList.add(new RobotData(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2]), Integer.valueOf(data[3]),
+                                                Integer.valueOf(data[4]), Integer.valueOf(data[5]), Integer.valueOf(data[6]), Integer.valueOf(data[7]),
+                                                Integer.valueOf(data[8]), Integer.valueOf(data[9]), Double.valueOf(data[10]), data[11], data[12], data[13]));
             }
 
             scanner.close();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             return FXCollections.observableArrayList(); //returns empty ObservableList if file is not found
         }
