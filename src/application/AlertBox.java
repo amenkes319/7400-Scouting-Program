@@ -7,11 +7,12 @@ public class AlertBox
 {
     public static void displaySaveSuccess()
     {
-        Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alert = new Alert(AlertType.INFORMATION); //Alert box class (added in Java 8) makes a pop up window object
         alert.setTitle("7400 Scouting Program");
         alert.setHeaderText("Save Successful");
         alert.setContentText("File Successfully Saved!");
 
+        //Shows the alert window and does not allow the user to interact with the other windows until the alert is closed
         alert.showAndWait();
     }
 
