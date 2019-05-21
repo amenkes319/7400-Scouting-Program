@@ -1,4 +1,4 @@
-package application;
+package /*src.*/application;
 
 import java.io.*;
 import java.util.Scanner;
@@ -15,196 +15,183 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-
+/*
+ * Controls Display.fxml
+ *
+ * @version 5/10/2019
+ * @author Andrew Menkes
+ */
 public class DisplayController
 {
-	@FXML Button btnBack;
-	@FXML Button btnDelete;
-	@FXML private TableView<RobotData> tableView;
-	@FXML private TableColumn<RobotData, Integer> teamNumberColumn;
-	@FXML private TableColumn<RobotData, Integer> matchNumberColumn;
-	@FXML private TableColumn<RobotData, Integer> cargoInCargoshipColumn;
-	@FXML private TableColumn<RobotData, Integer> cargoInRocketColumn;
-	@FXML private TableColumn<RobotData, Integer> hatchInCargoshipColumn;
-	@FXML private TableColumn<RobotData, Integer> hatchInRocketColumn;
-	@FXML private TableColumn<RobotData, Integer> penaltiesColumn;
-	@FXML private TableColumn<RobotData, Integer> piecesDroppedColumn;
-	@FXML private TableColumn<RobotData, Integer> startHABLevelColumn;
-	@FXML private TableColumn<RobotData, Integer> endHABLevelColumn;
-	@FXML private TableColumn<RobotData, Double> defenseColumn;
-	@FXML private TableColumn<RobotData, String> bHABColumn;
-	@FXML private TableColumn<RobotData, String> bLevelThreeColumn;
-	@FXML private TableColumn<RobotData, String> commentsColumn;
+    @FXML private Button btnBack, btnDelete, btnDeleteAll;
+    @FXML private TableView<RobotData> tableView; //JavaFX TableView- Allows Table Columns to be viewed
+    @FXML private TableColumn<RobotData, Integer> teamNumberColumn; //JavaFX TableColumn- Display the specified data type in the TableView
+    @FXML private TableColumn<RobotData, Integer> matchNumberColumn;
+    @FXML private TableColumn<RobotData, Integer> cargoInCargoshipColumn;
+    @FXML private TableColumn<RobotData, Integer> cargoInRocketColumn;
+    @FXML private TableColumn<RobotData, Integer> hatchInCargoshipColumn;
+    @FXML private TableColumn<RobotData, Integer> hatchInRocketColumn;
+    @FXML private TableColumn<RobotData, Integer> penaltiesColumn;
+    @FXML private TableColumn<RobotData, Integer> piecesDroppedColumn;
+    @FXML private TableColumn<RobotData, Integer> startHABLevelColumn;
+    @FXML private TableColumn<RobotData, Integer> endHABLevelColumn;
+    @FXML private TableColumn<RobotData, Double> defenseColumn;
+    @FXML private TableColumn<RobotData, String> bHABColumn;
+    @FXML private TableColumn<RobotData, String> bLevelThreeColumn;
+    @FXML private TableColumn<RobotData, String> commentsColumn;
 
-	Stage stgDisplay;
+    private Stage stgDisplay;
 
-	public DisplayController(Stage stage)
-	{
+    public DisplayController(Stage stage)
+    {
+        stgDisplay = stage;
+    }
 
-		stgDisplay = stage;
-	}
+    /*
+     * Method called automatically by Application class
+     * Initializes button actions and cell values
+     */
+    public void initialize()
+    {
+        btnBack.setOnAction(e -> loadBack());
+        btnDelete.setOnAction(e -> loadDelete());
+        btnDeleteAll.setOnAction(e -> loadDeleteAll());
 
-	/*
-	 * Method called automatically by Application class
-	 * Initializes button actions and cell values
-	 */
-	public void initialize()
-	{
-		btnBack.setOnAction(e -> loadBack());
-		btnDelete.setOnAction(e -> loadDelete());
+        teamNumberColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("teamNumber")); //Set value of TableColumn
+        matchNumberColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("matchNumber"));
+        cargoInCargoshipColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("cargoInCargoship"));
+        cargoInRocketColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("cargoInRocket"));
+        hatchInCargoshipColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("hatchInCargoship"));
+        hatchInRocketColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("hatchInRocket"));
+        penaltiesColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("penalties"));
+        piecesDroppedColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("piecesDropped"));
+        startHABLevelColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("startHABLevel"));
+        endHABLevelColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("endHABLevel"));
+        defenseColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Double>("defense"));
+        bHABColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("HAB"));
+        bLevelThreeColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("levelThree"));
+        commentsColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("comments"));
 
-		teamNumberColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("teamNumber"));
-		matchNumberColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("matchNumber"));
-		cargoInCargoshipColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("cargoInCargoship"));
-		cargoInRocketColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("cargoInRocket"));
-		hatchInCargoshipColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("hatchInCargoship"));
-		hatchInRocketColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("hatchInRocket"));
-		penaltiesColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("penalties"));
-		piecesDroppedColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("piecesDropped"));
-		startHABLevelColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("startHABLevel"));
-		endHABLevelColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Integer>("endHABLevel"));
-		defenseColumn.setCellValueFactory(new PropertyValueFactory<RobotData, Double>("defense"));
-		bHABColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("HAB"));
-		bLevelThreeColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("levelThree"));
-		commentsColumn.setCellValueFactory(new PropertyValueFactory<RobotData, String>("comments"));
+        tableView.setItems(getRobotData());
+    }
 
-		tableView.setItems(getRobotData());
-	}
+    public void show()
+    {
+        stgDisplay.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
 
-	public void show()
-	{
-		stgDisplay.getIcons().add(new Image(this.getClass().getResourceAsStream("icon.png")));
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Display.fxml"));
 
-		try
-		{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Display.fxml"));
+            loader.setController(this);
+            stgDisplay.setScene(new Scene(loader.load()));
+            stgDisplay.centerOnScreen();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-			loader.setController(this);
-			stgDisplay.setScene(new Scene(loader.load()));
-			stgDisplay.centerOnScreen();
-		}
+    public void loadBack()
+    {
+        InputController ctrlInput = new InputController(stgDisplay);
+        ctrlInput.show();
+    }
 
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+    public void loadDelete()
+    {
+        String filepath = "src\\application\\data.csv";
+        String selectedTeam = tableView.getSelectionModel().getSelectedItem().getAllData(); //Get String of all data seperated by commas
+        removeTeam(filepath, selectedTeam);
 
-	public void loadBack()
-	{
-		InputController ctrlInput = new InputController(stgDisplay);
-		ctrlInput.show();
-	}
+        tableView.setItems(getRobotData());
+    }
 
-	public void loadDelete()
-	{
-		String filepath = "src\\application\\data.csv";
-		String selectedTeam = tableView.getSelectionModel().getSelectedItem().getAllData();
-		removeTeam(filepath, selectedTeam);
+    private void removeTeam(String filepath, String selectedTeam)
+    {
+        String tempFile = "src\\application\\temp.txt";
 
-		tableView.setItems(getRobotData());
-	}
+        File oldFile = new File(filepath);
+        File newFile = new File(tempFile);
 
-	private void removeTeam(String filepath, String selectedTeam)
-	{
-		String tempFile = "src\\application\\temp.txt";
+        boolean bDeleted = false;
 
-		File oldFile = new File(filepath);
-		File newFile = new File(tempFile);
+        try
+        {
+            Scanner scanner = new Scanner(oldFile);
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(tempFile, true)));
 
-		boolean b_deleted = false;
+            while(scanner.hasNextLine())
+            {
+                String line = scanner.nextLine();
 
-		try
-		{
-			Scanner scanner = new Scanner(oldFile);
+                String[] data = line.split(",");
 
-			FileWriter fw = new FileWriter(tempFile, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter pw = new PrintWriter(bw);
+                System.out.println(line);
 
-			while(scanner.hasNextLine())
-			{
-				String line = scanner.nextLine();
+                if(!line.equals(selectedTeam) || bDeleted)
+                {
+                    for(String d : data)
+                        pw.print(d + ",");
+                    pw.println();
+                }
+                else
+                    bDeleted = true;
+            }
+            scanner.close();
+            pw.flush();
+            pw.close();
+            oldFile.delete();
 
-				String[] data = line.split(",");
+            newFile.renameTo(new File(filepath));
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-				if(!line.equals(selectedTeam) || b_deleted)
-				{
-					for(String d : data)
-						pw.print(d + ",");
-					pw.println();
-				}
-				else
-					b_deleted = true;
-			}
-			scanner.close();
-			pw.flush();
-			pw.close();
-			oldFile.delete();
+    public void loadDeleteAll()
+    {
+        String filepath = "src\\application\\data.csv";
+        String tempFile= "src\\application\\temp.csv";
 
-			File temp = new File(filepath);
-			newFile.renameTo(temp);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+        File oldFile = new File(filepath);
+        File newFile = new File(tempFile);
 
-	public ObservableList<RobotData> getRobotData()
-	{
-		int data_TeamNumber = 0;
-		int data_MatchNumber = 0;
-		int data_CargoInCargoship = 0;
-		int data_CargoInRocket = 0;
-		int data_HatchInCargoship = 0;
-		int data_HatchInRocket = 0;
-		int data_Penalties = 0;
-		int data_PiecesDropped = 0;
-		int data_StartHABLevel = 0;
-		int data_EndHABLevel = 0;
-		double data_Defense = 0.0;
-		String data_HAB = "";
-		String data_LevelThree = "";
-		String data_Comments = "";
+        oldFile.delete();
+        newFile.renameTo(new File(filepath));
 
-		ObservableList<RobotData> robotDataList = FXCollections.observableArrayList();
+        tableView.setItems(getRobotData());
+    }
 
-		try
-		{
-			Scanner scanner = new Scanner(new File("src\\application\\data.csv"));
+    public ObservableList<RobotData> getRobotData()
+    {
 
-			while(scanner.hasNextLine())
-			{
-				String line = scanner.nextLine();
-				String[] data = line.split(",");
+        //Similar to and ArrayList, an ObserbableList has an active "Listener" to see if data has changed or actions need to be done
+        ObservableList<RobotData> robotDataList = FXCollections.observableArrayList();
 
-				data_TeamNumber = Integer.valueOf(data[0]);
-				data_MatchNumber = Integer.valueOf(data[1]);
-				data_CargoInCargoship = Integer.valueOf(data[2]);
-				data_CargoInRocket = Integer.valueOf(data[3]);
-				data_HatchInCargoship = Integer.valueOf(data[4]);
-				data_HatchInRocket = Integer.valueOf(data[5]);
-				data_Penalties = Integer.valueOf(data[6]);
-				data_PiecesDropped = Integer.valueOf(data[7]);
-				data_StartHABLevel = Integer.valueOf(data[8]);
-				data_EndHABLevel = Integer.valueOf(data[9]);
-				data_Defense = Double.valueOf(data[10]);
-				data_HAB = data[11];
-				data_LevelThree = data[12];
-				data_Comments = data[13];
+        try
+        {
+            Scanner scanner = new Scanner(new File("src\\application\\data.csv"));
 
-				robotDataList.add(new RobotData(data_TeamNumber, data_MatchNumber, data_CargoInCargoship, data_CargoInRocket, data_HatchInCargoship, data_HatchInRocket,
-						data_Penalties, data_PiecesDropped, data_StartHABLevel, data_EndHABLevel, data_Defense, data_HAB, data_LevelThree, data_Comments));
-			}
+            while(scanner.hasNextLine())
+            {
+                String[] data = scanner.nextLine().split(",");
 
-			scanner.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+                robotDataList.add(new RobotData(Integer.valueOf(data[0]), Integer.valueOf(data[1]), Integer.valueOf(data[2]), Integer.valueOf(data[3]),
+                                                Integer.valueOf(data[4]), Integer.valueOf(data[5]), Integer.valueOf(data[6]), Integer.valueOf(data[7]),
+                                                Integer.valueOf(data[8]), Integer.valueOf(data[9]), Double.valueOf(data[10]), data[11], data[12], data[13]));
+            }
 
-		return robotDataList;
-	}
+            scanner.close();
+        }
+        catch(IOException e)
+        {
+            return FXCollections.observableArrayList(); //returns empty ObservableList if file is not found
+        }
+
+        return robotDataList;
+    }
 }

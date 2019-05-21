@@ -1,37 +1,44 @@
-package application;
+package /*src.*/application;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/*
+ * Create static pop up boxes
+ *
+ * @version 5/10/2019
+ * @author Andrew Menkes
+ */
 public class AlertBox
 {
-	public static void displaySaveSuccess()
-	{
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("7400 Scouting Program");
-		alert.setHeaderText("Save Successful");
-		alert.setContentText("File Successfully Saved!");
+    public static void displaySaveSuccess()
+    {
+        Alert alert = new Alert(AlertType.INFORMATION); //Alert box class (added in Java 8) makes a pop up window object
+        alert.setTitle("7400 Scouting Program");
+        alert.setHeaderText("Save Successful");
+        alert.setContentText("File Successfully Saved!");
 
-		alert.showAndWait();
-	}
+        //Shows the alert window and does not allow the user to interact with the other windows until the alert is closed
+        alert.showAndWait();
+    }
 
-	public static void displayTeamNumberError()
-	{
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("7400 Scouting Program");
-		alert.setHeaderText("ERROR!");
-		alert.setContentText("Please enter a valid team number!");
+    public static void displayTeamNumberError()
+    {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("7400 Scouting Program");
+        alert.setHeaderText("ERROR!");
+        alert.setContentText("Please enter a valid team number!");
 
-		alert.showAndWait();
-	}
+        alert.showAndWait();
+    }
 
-	public static void displayMatchNumberError()
-	{
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("7400 Scouting Program");
-		alert.setHeaderText("ERROR!");
-		alert.setContentText("Please enter a valid match number!");
+    public static void displayMatchNumberError()
+    {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("7400 Scouting Program");
+        alert.setHeaderText("ERROR!");
+        alert.setContentText("Please enter a valid match number!");
 
-		alert.showAndWait();
-	}
+        alert.showAndWait();
+    }
 }

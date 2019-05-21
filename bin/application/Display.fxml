@@ -33,6 +33,8 @@
             <Button fx:id="btnBack" mnemonicParsing="false" text="Back" />
             <Pane prefHeight="40.0" prefWidth="10.0" />
             <Button fx:id="btnDelete" mnemonicParsing="false" text="Delete Team" />
+            <Pane prefHeight="40.0" prefWidth="1338.0" />
+            <Button fx:id="btnDeleteAll" layoutX="61.0" layoutY="18.0" mnemonicParsing="false" text="Delete All Teams" />
          </children>
          <BorderPane.margin>
             <Insets left="10.0" />
