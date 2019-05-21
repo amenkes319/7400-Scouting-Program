@@ -3,6 +3,12 @@ package /*src.*/application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/*
+ * Create static pop up boxes
+ *
+ * @version 5/10/2019
+ * @author Andrew Menkes
+ */
 public class AlertBox
 {
     public static void displaySaveSuccess()
