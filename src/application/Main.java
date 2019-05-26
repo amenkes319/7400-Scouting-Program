@@ -30,6 +30,6 @@ public class Main extends Application
 
     public static void main(String[] args)
     {
-        launch(args); //JavaFX static method used to call the start() method
+        launch(args); //JavaFX static method used to call the launch the program
     }
 }

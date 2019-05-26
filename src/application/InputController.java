@@ -280,10 +280,10 @@ public class InputController
         {
             FileWriter fw = new FileWriter(new File("src\\application\\data.csv"), true);
 
-            fw.write(Math.round((Math.random()*7915 + 1)) + "," + Math.round(Math.random()*115 + 1) + "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*20) +
-                     "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*20) + "," + Math.round(Math.random()*10) + "," + Math.round(Math.random()*20) +
-                     "," + (Math.round(Math.random()*2 + 1)) + "," + Math.round(Math.random()*3) + "," + (double) Math.round(Math.random()*5 * 2)/2 +
-                     "," + (Math.round(Math.random()) == 1 ? "Yes" : "No") + "," + (Math.round(Math.random()) == 1 ? "Yes" : "No") + "," + "Random Team" + ",\n");
+            fw.write((int) (Math.random()*7916 + 1) + "," + (int) (Math.random()*116 + 1) + "," + (int) (Math.random()*21) + "," + (int) (Math.random()*21) +
+                     "," + (int) (Math.random()*21) + "," + (int) (Math.random()*21) + "," + (int) (Math.random()*11) + "," + (int) (Math.random()*21) +
+                     "," + (int) (Math.random()*3 + 1) + "," + (int) (Math.random()*4) + "," + (int) (Math.random()*11)/2.0 +
+                     "," + (Math.random() >= 0.5 ? "Yes" : "No") + "," + (Math.random() >= 0.5 ? "Yes" : "No") + "," + "Random Team" + ",\n");
 
             fw.close();
 
